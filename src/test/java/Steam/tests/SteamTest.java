@@ -1,5 +1,6 @@
 package Steam.tests;
 
+import Steam.pages.GamePage;
 import framework.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -10,9 +11,9 @@ import Steam.pages.MenuSection;
 
 public class SteamTest extends BaseTest {
 
-    @Parameters({"language"})
+    @Parameters({"language","year"})
     @Test
-    public void steamTest(String language) {
+    public void steamTest(String language,String year) {
 
         MainPage mainPage = new MainPage();
         mainPage.selectLanguage(language);
@@ -21,6 +22,9 @@ public class SteamTest extends BaseTest {
         menuSection.navigateSection("categories_key", "action_key");
 
         ActionPage actionPage = new ActionPage();
-        actionPage.selectGameWithMaxDiscount();
+        actionPage.selectGameWithMaxDiscount(year);
+
+        GamePage gamePage = new GamePage();
+        gamePage.downloadSteam();
     }
 }

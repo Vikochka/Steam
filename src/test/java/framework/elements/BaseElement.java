@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -54,11 +53,12 @@ public abstract class BaseElement extends BaseTest {
 
     protected abstract String getElementType();
 
-    public void waitForIsElementPresent() {
+    public boolean waitForIsElementPresent() {
         isPresent();
         if (!element.isDisplayed()) {
             Assert.fail("Element do not found");
         }
+        return false;
     }
 
     public boolean waitForInvisibility() {

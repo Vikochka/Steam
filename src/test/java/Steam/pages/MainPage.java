@@ -21,9 +21,9 @@ public class MainPage extends BasePage {
         lblLanguage.click();
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         if (currentLanguage.isDisplayed()) {
-            PropertyReader prop = new PropertyReader("loc_en.properties");
+            PropertyReader prop = new PropertyReader("localisation/loc_en.properties");
         } else {
-            PropertyReader prop = new PropertyReader("loc_ru.properties");
+            PropertyReader prop = new PropertyReader("localisation/loc_ru.properties");
         }
         currentLanguage.click();
     }

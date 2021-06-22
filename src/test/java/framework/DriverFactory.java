@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import sun.java2d.cmm.Profile;
 
 
 public class DriverFactory {
@@ -25,7 +24,6 @@ public class DriverFactory {
             default:
                 System.out.println("Invalid browser name");
         }
-
         return driver;
     }
 }
