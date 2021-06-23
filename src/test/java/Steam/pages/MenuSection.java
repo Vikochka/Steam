@@ -20,8 +20,5 @@ public class MenuSection extends BasePage {
         section.click();
         Label navigateSection = new Label(By.xpath(String.format(btnNavigateSection, getProperty(navSection))));
         navigateSection.clickAndWait();
-
     }
-
-
 }

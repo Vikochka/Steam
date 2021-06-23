@@ -1,7 +1,6 @@
 package Steam.pages;
 
 import framework.BasePage;
-import framework.elements.Button;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 
@@ -13,18 +12,24 @@ import static framework.PropertyReader.getProperty;
 
 
 public class GamePage extends BasePage {
+    HeaderPage headerPage;
+    int filebyte = 3000;
+
     private static By pageLocator = By.id("appHubAppName");
-    private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
 
     private Label lblSteam = new Label(By.xpath("//div[@class='about_subtitle']"));
 
     public GamePage() {
         super(pageLocator, "Game page");
+        headerPage = new HeaderPage();
+    }
+
+    public void clickOnInstallSteam() {
+        headerPage.clickOnInstallSteam();
+        lblSteam.isDisplayed();
     }
 
     public void downloadSteam() {
-        btnInstallSteam.click();
-        lblSteam.isDisplayed();
         String url = getProperty("SetupSteamURL");
         String filePath = getProperty("filePath");
         FileOutputStream fileOutputStream = null;
@@ -32,9 +37,9 @@ public class GamePage extends BasePage {
         try {
             inputStream = new BufferedInputStream(new URL(url).openStream());
             fileOutputStream = new FileOutputStream(filePath);
-            byte data[] = new byte[3000];
+            byte data[] = new byte[filebyte];
             int count;
-            while ((count = inputStream.read(data, 0, 3000)) != -1) {
+            while ((count = inputStream.read(data, 0, filebyte)) != -1) {
                 fileOutputStream.write(data, 0, count);
                 fileOutputStream.flush();
             }

@@ -11,9 +11,9 @@ import Steam.pages.MenuSection;
 
 public class SteamTest extends BaseTest {
 
-    @Parameters({"language","year"})
+    @Parameters({"language", "year"})
     @Test
-    public void steamTest(String language,String year) {
+    public void steamTest(String language, String year) {
 
         MainPage mainPage = new MainPage();
         mainPage.selectLanguage(language);
@@ -22,9 +22,11 @@ public class SteamTest extends BaseTest {
         menuSection.navigateSection("categories_key", "action_key");
 
         ActionPage actionPage = new ActionPage();
-        actionPage.selectGameWithMaxDiscount(year);
-
-        GamePage gamePage = new GamePage();
-        gamePage.downloadSteam();
+        actionPage.selectGameWithMaxDiscount();
+      //  actionPage.checkAge(year);
+//
+//        GamePage gamePage = new GamePage();
+//        gamePage.clickOnInstallSteam();
+//        gamePage.downloadSteam();
     }
 }

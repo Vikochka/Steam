@@ -3,40 +3,49 @@ package Steam.pages;
 import framework.BasePage;
 import framework.elements.Label;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class ActionPage extends BasePage {
     private static By pageLocator = By.xpath("//h2[@class='pageheader'] ");
 
     private Label pageAgeLocator = new Label(By.xpath("//div[contains(text(),'Please enter your birth date to continue:')]"));
-    private Label listDiscount = new Label(By.xpath("//div[@class='contenthub_specials_grid_cell']//div[@class='discount_pct']"));
+    private Label lblDiscount = new Label(By.xpath("//div[@class='contenthub_specials_grid_cell']//div[@class='discount_pct']"));
     private Label blockGame = new Label(By.xpath("//div[@class='contenthub_specials_grid_cell']"));
 
     public ActionPage() {
         super(pageLocator, "Browsing Action");
     }
 
-    public void selectGameWithMaxDiscount(String enterAge) {
-        blockGame.waitForIsElementPresent();
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        for (int i = 1; i <= blockGame.size(); i++) {
-//            String[] discount;
-//            discount = listDiscount.split("%");
-//            int count = Integer.parseInt(discount[blockGame.size()]);
-            arrayList.add(listDiscount.size());
-            Collections.sort(arrayList);
-            Collections.max(arrayList);
-            listDiscount.click();
+    public void selectGameWithMaxDiscount() {
+
+        List<WebElement> discountList = lblDiscount.getElements();
+        lblDiscount.getText();
+
+        for (int i = 1; i < discountList.size(); i++) {
+            String[] discount;
+            discount = lblDiscount.split("%");
+
+            for (int j = 1; j < discount.length; j++) {
+                System.out.println(discount[j]);
+                // int convert = Integer.parseInt(discount[0]);
+                //      System.out.println(convert);
+                //  Collections.sort(list);
+            }
         }
-        if (pageAgeLocator.waitForIsElementPresent()) {
+    }
+
+
+    public GamePage checkAge(String enterAge) {
+        try {
+            pageAgeLocator.waitForIsElementPresent();
             AgePage agePage = new AgePage();
             agePage.ageCheck(enterAge);
-        }else {
-
+        } catch (NullPointerException e) {
+            return new GamePage();
         }
-
-
+        return new GamePage();
     }
 }

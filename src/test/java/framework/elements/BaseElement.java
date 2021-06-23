@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class BaseElement extends BaseTest {
     protected WebElement element;
     protected List<WebElement> elements;
-    protected WebDriver driver;
     private By by;
     private String name;
     private WebDriverWait wait;
@@ -29,17 +27,6 @@ public abstract class BaseElement extends BaseTest {
     public WebElement getElement() {
         waitForIsElementPresent();
         return element;
-    }
-
-    public List<WebElement> getElements() {
-        waitForIsElementPresent();
-        return elements;
-    }
-
-    public void sort() {
-        waitForIsElementPresent();
-        getElements();
-
     }
 
     public BaseElement(By by) {
@@ -53,44 +40,65 @@ public abstract class BaseElement extends BaseTest {
 
     protected abstract String getElementType();
 
-    public boolean waitForIsElementPresent() {
-        isPresent();
-        if (!element.isDisplayed()) {
-            Assert.fail("Element do not found");
+    public void waitForIsElementPresent() {
+
+        isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
+//        isElementPresent();
+//        if (!element.isDisplayed()) {
+//            Assert.fail("Element do not found");
+//        }
+//        return false;
+    }
+
+    public List<WebElement> getElements() {
+        waitForElementsArePresent();
+        return elements;
+    }
+
+//    public boolean isPresent() {
+//        return isPresent();
+//    }
+
+    public void waitForElementIsPresent() {
+        isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
+    }
+
+    public void waitForElementsArePresent() {
+        areElementsPresent(Integer.valueOf(browser.getTimeoutForCondition()));
+    }
+
+    public boolean isElementPresent(int timeout) {
+        WebDriverWait wait = new WebDriverWait(browser.getDriver(), timeout);
+        try {
+            browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
+            element = browser.getDriver().findElement(by);
+            return element.isDisplayed();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
 
-    public boolean waitForInvisibility() {
-        isPresent();
-        return wait.until(ExpectedConditions.invisibilityOf(element));
-    }
-
-    public WebElement waitForClickable(By by) {
-        isPresent();
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-        return element;
-    }
-
-    public boolean isPresent() {
-        return isPresent(TIMEOUT_WAIT_0);
-    }
-
-    public boolean isPresent(int timeout) {
+    /**
+     * Check are elements present on the page
+     *
+     * @return are elements present
+     */
+    public boolean areElementsPresent(int timeout) {
         WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
         browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
         try {
             wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
                 public Boolean apply(final WebDriver driver) {
                     try {
-                        List<WebElement> list = driver.findElements(by);
-                        for (WebElement el : list) {
-                            if (el instanceof RemoteWebElement && el.isDisplayed()) {
-                                element = (RemoteWebElement) el;
+                        elements = driver.findElements(by);
+                        for (WebElement element : elements) {
+                            if (element instanceof WebElement && element.isDisplayed()) {
+                                element = (WebElement) element;
                                 return element.isDisplayed();
                             }
                         }
-                        element = (RemoteWebElement) driver.findElement(by);
+                        element = (WebElement) driver.findElement(by);
                     } catch (Exception e) {
                         return false;
                     }
@@ -100,14 +108,41 @@ public abstract class BaseElement extends BaseTest {
         } catch (Exception e) {
             return false;
         }
-        try {
-            browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
-            return element.isDisplayed();
-        } catch (Exception e) {
-            Assert.fail("Element does not found");
-        }
         return false;
     }
+
+//    public boolean isPresent(int timeout) {
+//        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
+//        browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
+//        try {
+//            wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
+//                public Boolean apply(final WebDriver driver) {
+//                    try {
+//                        List<WebElement> list = driver.findElements(by);
+//                        for (WebElement el : list) {
+//                            if (el instanceof WebElement && el.isDisplayed()) {
+//                                element = (WebElement) el;
+//                                return element.isDisplayed();
+//                            }
+//                        }
+//                        element = (WebElement) driver.findElement(by);
+//                    } catch (Exception e) {
+//                        return false;
+//                    }
+//                    return element.isDisplayed();
+//                }
+//            });
+//        } catch (Exception e) {
+//            return false;
+//        }
+//        try {
+//            browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
+//            return element.isDisplayed();
+//        } catch (Exception e) {
+//            Assert.fail("Element does not found");
+//        }
+//        return false;
+//    }
 
 
     public void sendKeys(String sendKeys) {
