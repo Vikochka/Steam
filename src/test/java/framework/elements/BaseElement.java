@@ -7,10 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +20,6 @@ public abstract class BaseElement extends BaseTest {
     private String name;
     private WebDriverWait wait;
     private static final int TIMEOUT_WAIT_0 = 0;
-
 
     public WebElement getElement() {
         waitForIsElementPresent();
@@ -40,24 +37,15 @@ public abstract class BaseElement extends BaseTest {
 
     protected abstract String getElementType();
 
-    public void waitForIsElementPresent() {
-
+    public boolean waitForIsElementPresent() {
         isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
-//        isElementPresent();
-//        if (!element.isDisplayed()) {
-//            Assert.fail("Element do not found");
-//        }
-//        return false;
+        return false;
     }
 
     public List<WebElement> getElements() {
         waitForElementsArePresent();
         return elements;
     }
-
-//    public boolean isPresent() {
-//        return isPresent();
-//    }
 
     public void waitForElementIsPresent() {
         isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
@@ -79,11 +67,6 @@ public abstract class BaseElement extends BaseTest {
         return false;
     }
 
-    /**
-     * Check are elements present on the page
-     *
-     * @return are elements present
-     */
     public boolean areElementsPresent(int timeout) {
         WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
         browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
@@ -110,40 +93,6 @@ public abstract class BaseElement extends BaseTest {
         }
         return false;
     }
-
-//    public boolean isPresent(int timeout) {
-//        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
-//        browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
-//        try {
-//            wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
-//                public Boolean apply(final WebDriver driver) {
-//                    try {
-//                        List<WebElement> list = driver.findElements(by);
-//                        for (WebElement el : list) {
-//                            if (el instanceof WebElement && el.isDisplayed()) {
-//                                element = (WebElement) el;
-//                                return element.isDisplayed();
-//                            }
-//                        }
-//                        element = (WebElement) driver.findElement(by);
-//                    } catch (Exception e) {
-//                        return false;
-//                    }
-//                    return element.isDisplayed();
-//                }
-//            });
-//        } catch (Exception e) {
-//            return false;
-//        }
-//        try {
-//            browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
-//            return element.isDisplayed();
-//        } catch (Exception e) {
-//            Assert.fail("Element does not found");
-//        }
-//        return false;
-//    }
-
 
     public void sendKeys(String sendKeys) {
         getElement().sendKeys(sendKeys);
@@ -196,8 +145,9 @@ public abstract class BaseElement extends BaseTest {
 
     }
 
-    public abstract String[] split(String velue);
-
+    public abstract String[] split(String value);
 
     public abstract int size();
+
+    public abstract String getAttribute(String href);
 }

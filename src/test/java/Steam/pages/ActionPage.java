@@ -5,47 +5,71 @@ import framework.elements.Label;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ActionPage extends BasePage {
+
     private static By pageLocator = By.xpath("//h2[@class='pageheader'] ");
 
-    private Label pageAgeLocator = new Label(By.xpath("//div[contains(text(),'Please enter your birth date to continue:')]"));
-    private Label lblDiscount = new Label(By.xpath("//div[@class='contenthub_specials_grid_cell']//div[@class='discount_pct']"));
-    private Label blockGame = new Label(By.xpath("//div[@class='contenthub_specials_grid_cell']"));
+    private static Label lblpageAgeLocator = new Label(By.xpath("//div[contains(text(),'Please enter your birth date to continue:')]"));
+    private static Label lblDiscount = new Label(By.xpath("//div[@class='discount_block  discount_block_inline']//div[@class='discount_pct']"));
 
     public ActionPage() {
         super(pageLocator, "Browsing Action");
     }
 
     public void selectGameWithMaxDiscount() {
-
+        List<Integer> integers = new ArrayList<>();
         List<WebElement> discountList = lblDiscount.getElements();
-        lblDiscount.getText();
-
-        for (int i = 1; i < discountList.size(); i++) {
+        int convert = 0;
+        int max;
+        int indexOfMax = 0;
+        for (int i = 0; i < discountList.size(); i++) {
+            String strDiscount = discountList.get(i).getText();
             String[] discount;
-            discount = lblDiscount.split("%");
+            discount = strDiscount.split("%");
 
-            for (int j = 1; j < discount.length; j++) {
-                System.out.println(discount[j]);
-                // int convert = Integer.parseInt(discount[0]);
-                //      System.out.println(convert);
-                //  Collections.sort(list);
+            for (int j = 0; j < discount.length; j++) {
+                convert = Integer.parseInt(discount[j]);
+                convert = convert - convert - convert;
             }
+            integers.add(convert);
         }
+        max = Collections.max(integers);
+        int count = Collections.frequency(integers, max);
+        if (count != 1) {
+            Random random = new Random();
+            indexOfMax = random.nextInt(count);
+        } else {
+            indexOfMax = integers.indexOf(Collections.max(integers));
+        }
+        discountList.get(indexOfMax).click();
     }
 
+    public static int getMaxDiscount() {
+        List<Integer> integers = new ArrayList<>();
+        List<WebElement> discountList = lblDiscount.getElements();
+        int convert = 0;
+        for (int i = 0; i < discountList.size(); i++) {
+            String strDiscount = discountList.get(i).getText();
+            String[] discount;
+            discount = strDiscount.split("%");
 
-    public GamePage checkAge(String enterAge) {
-        try {
-            pageAgeLocator.waitForIsElementPresent();
-            AgePage agePage = new AgePage();
-            agePage.ageCheck(enterAge);
-        } catch (NullPointerException e) {
-            return new GamePage();
+            for (int j = 0; j < discount.length; j++) {
+                convert = Integer.parseInt(discount[j]);
+                convert = convert - convert - convert;
+            }
+            integers.add(convert);
         }
-        return new GamePage();
+        int max = Collections.max(integers);
+        return max;
+    }
+
+    public BasePage checkAge(String enterAge) {
+        if (!lblpageAgeLocator.waitForIsElementPresent()) {
+            return new GamePage();
+        } else {
+            return new AgePage().checkThatAgePageOpen(enterAge);
+        }
     }
 }

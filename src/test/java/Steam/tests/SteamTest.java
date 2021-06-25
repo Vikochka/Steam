@@ -23,10 +23,11 @@ public class SteamTest extends BaseTest {
 
         ActionPage actionPage = new ActionPage();
         actionPage.selectGameWithMaxDiscount();
-      //  actionPage.checkAge(year);
-//
-//        GamePage gamePage = new GamePage();
-//        gamePage.clickOnInstallSteam();
-//        gamePage.downloadSteam();
+        actionPage.checkAge(year);
+
+        GamePage gamePage = new GamePage();
+        gamePage.checkCurrentGame();
+        gamePage.clickOnInstallSteam();
+        gamePage.downloadSteam();
     }
 }

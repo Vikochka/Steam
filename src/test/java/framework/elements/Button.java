@@ -24,6 +24,9 @@ public class Button extends BaseElement {
     public int size() {
         return 0;
     }
+    public String getAttribute(String href) {
+        return null;
+    }
 
     public void clickButton() {
         click();

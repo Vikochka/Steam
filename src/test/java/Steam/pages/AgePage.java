@@ -9,7 +9,7 @@ import static framework.PropertyReader.getProperty;
 
 public class AgePage extends BasePage {
     private static By pageLocator = By.xpath("//div[contains(text(),'Please enter your birth date to continue:')]");
-    private static String viewPage = "//a[@class='btnv6_blue_hoverfade btn_medium']/span[text()='%s']";
+    private static String btnviewPage = "//a[@class='btnv6_blue_hoverfade btn_medium']/span[text()='%s']";
 
     private ComboBox dropdownYear = new ComboBox(By.id("ageYear"));
 
@@ -17,9 +17,10 @@ public class AgePage extends BasePage {
         super(pageLocator, "Age page");
     }
 
-    public void ageCheck(String interYear) {
+    public BasePage checkThatAgePageOpen(String interYear) {
         dropdownYear.selectComboBox(interYear);
-        Button btnViewPage = new Button(By.xpath(String.format(viewPage,getProperty("view_page_key"))));
+        Button btnViewPage = new Button(By.xpath(String.format(btnviewPage,getProperty("view_page_key"))));
         btnViewPage.clickAndWait();
+        return new GamePage();
     }
 }

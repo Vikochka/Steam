@@ -23,5 +23,8 @@ public class ComboBox extends BaseElement {
         return 0;
     }
 
+    public String getAttribute(String href) {
+        return null;
+    }
 
 }

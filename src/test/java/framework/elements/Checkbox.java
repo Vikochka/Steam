@@ -26,4 +26,9 @@ public class Checkbox extends BaseElement {
         return 0;
     }
 
+
+    public String getAttribute(String href) {
+        return null;
+    }
+
 }

@@ -35,4 +35,9 @@ public class TextBox extends BaseElement {
     public int size() {
         return 0;
     }
+
+
+    public String getAttribute(String href) {
+        return null;
+    }
 }

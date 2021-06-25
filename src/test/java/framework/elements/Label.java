@@ -24,4 +24,9 @@ public class Label extends BaseElement {
     public int size() {
         return 0;
     }
+
+
+    public String getAttribute(String href) {
+        return null;
+    }
 }

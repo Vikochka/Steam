@@ -16,8 +16,8 @@ public class GamePage extends BasePage {
     int filebyte = 3000;
 
     private static By pageLocator = By.id("appHubAppName");
-
     private Label lblSteam = new Label(By.xpath("//div[@class='about_subtitle']"));
+    private Label lblGameDiscount = new Label(By.xpath("//div[@class='game_area_purchase_game']//div[@class='discount_block game_purchase_discount']//div[@class='discount_pct']"));
 
     public GamePage() {
         super(pageLocator, "Game page");
@@ -27,6 +27,22 @@ public class GamePage extends BasePage {
     public void clickOnInstallSteam() {
         headerPage.clickOnInstallSteam();
         lblSteam.isDisplayed();
+    }
+
+    public boolean checkCurrentGame() {
+        int max = ActionPage.getMaxDiscount();
+        String text = lblGameDiscount.getText();
+        String[] discount = text.split("%");
+        for (int i = 0; i < discount.length; i++) {
+            int convert = Integer.parseInt(discount[i]);
+            convert = convert - convert - convert;
+            if (convert == max) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return Boolean.parseBoolean(null);
     }
 
     public void downloadSteam() {
