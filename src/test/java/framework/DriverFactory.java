@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.util.HashMap;
 
@@ -31,7 +33,14 @@ public class DriverFactory {
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                FirefoxProfile profile = new FirefoxProfile();
+                profile.setPreference("browser.download.folderList", 2);
+                profile.setPreference("browser.download.dir", System.getProperty("user.dir") + "\\src\\test\\resources\\downloads");
+                profile.setPreference("browser.download.useDownloadDir", true);
+                profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
+                firefoxOptions.setProfile(profile);
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
                 System.out.println("Invalid browser name");
