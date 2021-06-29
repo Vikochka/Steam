@@ -78,9 +78,9 @@ public class DownloadPage extends BaseSteamPage {
 
     public void downloadSteam() throws InterruptedException {
         btnInstallSteam.click();
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         String filePath = getProperty("filePath");
-        File folder = new File(System.getProperty(filePath));
+        File folder = new File(System.getProperty("user.dir")+"\\src\\test\\resources\\downloads");
         //список файлов в этой папке
         File[] listOfFiles = folder.listFiles();
         boolean found = false;
@@ -97,7 +97,7 @@ public class DownloadPage extends BaseSteamPage {
             }
         }
         assertTrue(found, "Загруженный документ не найден");
-        file.deleteOnExit();
+        file.delete();
     }
 
 }
