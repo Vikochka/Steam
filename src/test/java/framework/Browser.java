@@ -117,4 +117,6 @@ public class Browser {
     public String getLocation() {
         return driver.getCurrentUrl();
     }
+
+
 }

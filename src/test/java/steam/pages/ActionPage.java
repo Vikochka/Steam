@@ -1,4 +1,4 @@
-package Steam.pages;
+package steam.pages;
 
 import framework.BasePage;
 import framework.elements.Label;
@@ -7,15 +7,13 @@ import org.openqa.selenium.WebElement;
 
 import java.util.*;
 
-public class ActionPage extends BasePage {
+public class ActionPage extends BaseSteamPage {
+    private static String pageLocator = "//h2[@class='pageheader'] ";
 
-    private static By pageLocator = By.xpath("//h2[@class='pageheader'] ");
-
-    private static Label lblpageAgeLocator = new Label(By.xpath("//div[contains(text(),'Please enter your birth date to continue:')]"));
     private static Label lblDiscount = new Label(By.xpath("//div[@class='discount_block  discount_block_inline']//div[@class='discount_pct']"));
 
     public ActionPage() {
-        super(pageLocator, "Browsing Action");
+        super(By.xpath(pageLocator), "Browsing Action");
     }
 
     public void selectGameWithMaxDiscount() {
@@ -63,13 +61,5 @@ public class ActionPage extends BasePage {
         }
         int max = Collections.max(integers);
         return max;
-    }
-
-    public BasePage checkAge(String enterAge) {
-        if (!lblpageAgeLocator.waitForIsElementPresent()) {
-            return new GamePage();
-        } else {
-            return new AgePage().checkThatAgePageOpen(enterAge);
-        }
     }
 }
