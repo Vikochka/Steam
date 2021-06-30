@@ -20,7 +20,6 @@ public class DriverFactory {
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                //установить каталог автоматической загрузки в ChromeOptions, а затем создать драйвер с этой опцией
                 HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
                 chromePrefs.put("profile.default_content_settings.popups", 0);
                 chromePrefs.put("download.default_directory", System.getProperty("user.dir") + PropertyReader.getProperty("filePath"));
@@ -29,7 +28,6 @@ public class DriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
                 driver = new ChromeDriver(options);
-//                driver = new ChromeDriver();
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
