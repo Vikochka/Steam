@@ -11,13 +11,13 @@ import static org.testng.Assert.assertTrue;
 
 public class DownloadPage extends BaseSteamPage {
 
-    private static String pageLocator = "//div[@class='steam_logo']";
+    private static String pageLocator = "about_greeting";
 
     private Label lblSteam = new Label(By.xpath("//div[@class='about_subtitle']"));
     private Button btnInstallSteam = new Button(By.xpath("//div[@id='about_greeting']//a[@class='about_install_steam_link']"));
 
     public DownloadPage() {
-        super(By.xpath(pageLocator), "DownloadPage");
+        super(By.id(pageLocator), "DownloadPage");
     }
 
     public void clickOnInstallSteam() {
@@ -30,7 +30,6 @@ public class DownloadPage extends BaseSteamPage {
         Thread.sleep(10000);
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
         File folder = new File(filePath);
-        //список файлов в этой папке
         File[] listOfFiles = folder.listFiles();
         boolean found = false;
         File file = null;
