@@ -29,7 +29,6 @@ public class SteamTest extends BaseTest {
 
         DownloadPage downloadPage = new DownloadPage();
         downloadPage.clickOnInstallSteam();
-      //  downloadPage.downloadSteam();
         try {
             downloadPage.downloadSteam();
         } catch (InterruptedException e) {

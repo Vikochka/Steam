@@ -141,8 +141,6 @@ public abstract class BaseElement extends BaseTest {
         waitForIsElementPresent();
         Select select = new Select(element);
         select.selectByVisibleText(value);
-
-
     }
 
     public abstract String[] split(String value);
