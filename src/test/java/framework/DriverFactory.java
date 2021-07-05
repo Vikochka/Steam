@@ -20,6 +20,7 @@ public class DriverFactory {
         switch (browser) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
+
                 HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
                 chromePrefs.put("profile.default_content_settings.popups", 0);
                 chromePrefs.put("download.default_directory", System.getProperty("user.dir") + PropertyReader.getProperty("filePath"));
@@ -27,19 +28,25 @@ public class DriverFactory {
 
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
+
                 driver = new ChromeDriver(options);
                 break;
+
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
+
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+
                 FirefoxProfile profile = new FirefoxProfile();
                 profile.setPreference("browser.download.folderList", 2);
                 profile.setPreference("browser.download.dir", System.getProperty("user.dir") + "\\src\\test\\resources\\downloads");
                 profile.setPreference("browser.download.useDownloadDir", true);
                 profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
                 firefoxOptions.setProfile(profile);
+
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
+
             default:
                 System.out.println("Invalid browser name");
         }

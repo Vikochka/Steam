@@ -3,7 +3,7 @@ package steam.pages;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-@Getter
+
 public class MainPage extends BaseSteamPage{
 
     private static String pageLocator = "logo_holder";

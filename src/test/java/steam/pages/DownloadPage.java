@@ -10,14 +10,13 @@ import static framework.PropertyReader.getProperty;
 import static org.testng.Assert.assertTrue;
 
 public class DownloadPage extends BaseSteamPage {
-
-    private static String pageLocator = "about_greeting";
+    private static String pageLocator = "//div[@class='steam_logo']";
 
     private Label lblSteam = new Label(By.xpath("//div[@class='about_subtitle']"));
     private Button btnInstallSteam = new Button(By.xpath("//div[@id='about_greeting']//a[@class='about_install_steam_link']"));
 
     public DownloadPage() {
-        super(By.id(pageLocator), "DownloadPage");
+        super(By.xpath(pageLocator), "DownloadPage");
     }
 
     public void clickOnInstallSteam() {
@@ -27,7 +26,7 @@ public class DownloadPage extends BaseSteamPage {
 
     public void downloadSteam() throws InterruptedException {
         btnInstallSteam.click();
-        Thread.sleep(10000);
+        Thread.sleep(3000);
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
         File folder = new File(filePath);
         File[] listOfFiles = folder.listFiles();
