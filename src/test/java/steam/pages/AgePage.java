@@ -19,11 +19,11 @@ public class AgePage extends BaseSteamPage {
     }
 
     public static boolean waitForPageToLoad() {
-        Label lblAgePage =new Label(By.xpath(String.format(pageLocator,getProperty("age_check"))), "Age page");
-        if (!lblAgePage.waitForIsElementPresent()) {
-            return false;
-        } else {
+        Label lblAgePage =new Label(By.xpath(String.format(pageLocator,getProperty("age_check"))));
+        if (!lblAgePage.isDisplayed()) {
             return true;
+        } else {
+            return false;
         }
     }
 
