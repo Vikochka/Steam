@@ -1,5 +1,6 @@
 package steam.tests;
 
+import io.qameta.allure.Step;
 import steam.pages.*;
 import framework.BaseTest;
 import org.testng.annotations.Parameters;
@@ -9,7 +10,8 @@ import org.testng.annotations.Test;
 public class SteamTest extends BaseTest {
 
     @Parameters({"language", "year"})
-    @Test
+    @Step("Chose game with max discount and download SteamSetup.exe")
+    @Test(description = "Chose game with max discount and download SteamSetup file")
     public void steamTest(String language, String year) {
 
         MainPage mainPage = new MainPage();
