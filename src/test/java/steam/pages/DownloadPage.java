@@ -26,8 +26,8 @@ public class DownloadPage extends BaseSteamPage {
 
     public void downloadSteam() throws InterruptedException {
         btnInstallSteam.click();
-        Thread.sleep(3000);
-        String filePath = System.getProperty("user.dir") + getProperty("filePath");
+        Thread.sleep(7000);
+        String filePath = System.getProperty("user.dir") + prop.getProperty("filePath");
         File folder = new File(filePath);
         File[] listOfFiles = folder.listFiles();
         boolean found = false;

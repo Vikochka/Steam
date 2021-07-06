@@ -1,6 +1,7 @@
 package steam.pages;
 
 import framework.BasePage;
+import framework.PropertyReader;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -8,8 +9,9 @@ import org.openqa.selenium.By;
 public abstract class BaseSteamPage extends BasePage {
     private final Header header = new Header();
     private final MainMenu mainMenu = new MainMenu();
+    static PropertyReader prop = new PropertyReader();
 
     public BaseSteamPage(By by, String titlePage) {
-        super(by,titlePage);
+        super(by, titlePage);
     }
 }

@@ -20,7 +20,6 @@ public class Header {
             lblLanguage.click();
             prop = new PropertyReader("localisation/loc_ru.properties");
         } else {
-
             prop = new PropertyReader("localisation/loc_en.properties");
         }
         currentLanguage.click();
