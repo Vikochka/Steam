@@ -27,6 +27,7 @@ public class Header {
             prop = new PropertyReader("localisation/loc_ru.properties");
             currentLanguage.click();
         }
+
     }
 
     @Step("Click on Install Steam button on the Header")
