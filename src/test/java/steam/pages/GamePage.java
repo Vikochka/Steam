@@ -1,6 +1,7 @@
 package steam.pages;
 
 import framework.elements.Label;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class GamePage extends BaseSteamPage {
@@ -13,6 +14,7 @@ public class GamePage extends BaseSteamPage {
         super(By.id(pageLocator), "Game page");
     }
 
+    @Step("Check that current game was selected")
     public boolean checkCurrentGame() {
         int max = ActionPage.getMaxDiscount();
         String text = lblGameDiscount.getText();
