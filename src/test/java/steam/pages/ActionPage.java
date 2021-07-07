@@ -1,6 +1,8 @@
 package steam.pages;
 
+import framework.BasePage;
 import framework.elements.Label;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +16,7 @@ public class ActionPage extends BaseSteamPage {
     public ActionPage() {
         super(By.xpath(pageLocator), "Browsing Action");
     }
-
+    @Step("Select game with max discount")
     public void selectGameWithMaxDiscount() {
         List<Integer> integers = new ArrayList<>();
         List<WebElement> discountList = lblDiscount.getElements();
