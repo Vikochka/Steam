@@ -1,6 +1,9 @@
 package steam.pages;
 
+import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
+
 
 public class MainPage extends BaseSteamPage {
 

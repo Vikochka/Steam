@@ -12,16 +12,16 @@ public class Header {
 
     private Label lblLanguage = new Label(By.id("language_pulldown"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
-    private static String btnLanguage = "//div[@class='popup_body popup_menu']//a[contains(text(),'%s')]";
+    private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
 
     public void selectLanguage(String selectLanguage) {
         lblLanguage.click();
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         prop = new PropertyReader("localisation/loc_en.properties");
-        if (!currentLanguage.waitForIsElementPresent()) {
-            lblLanguage.click();
-        } else {
+        if (currentLanguage.waitForIsElementPresent()) {
             currentLanguage.click();
+        } else {
+            lblLanguage.click();
         }
     }
 
