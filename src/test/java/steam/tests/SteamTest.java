@@ -10,8 +10,8 @@ import org.testng.annotations.Test;
 public class SteamTest extends BaseTest {
 
     @Parameters({"language", "year"})
-    @Step("Chose game with max discount and download SteamSetup file")
-    @Test(description = "Chose game with max discount and download SteamSetup file")
+    @Step("Chose game with max discount and download SteamSetup.exe")
+    @Test
     public void steamTest(String language, String year) {
 
         MainPage mainPage = new MainPage();

@@ -4,7 +4,6 @@ import framework.PropertyReader;
 import framework.elements.Button;
 import framework.elements.Label;
 import framework.elements.TextBox;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 
@@ -18,18 +17,14 @@ public class Header {
     public void selectLanguage(String selectLanguage) {
         lblLanguage.click();
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
-
-        if (currentLanguage.isDisplayed()) {
-            prop = new PropertyReader("localisation/loc_en.properties");
+        prop = new PropertyReader("localisation/loc_en.properties");
+        if (currentLanguage.waitForIsElementPresent()) {
             currentLanguage.click();
         } else {
-            prop = new PropertyReader("localisation/loc_ru.properties");
             lblLanguage.click();
         }
-
     }
 
-    @Step("Click on Install Steam button on the Header")
     public void clickOnInstallSteam() {
         btnInstallSteam.clickAndWait();
     }

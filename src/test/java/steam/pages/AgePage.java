@@ -22,13 +22,12 @@ public class AgePage extends BaseSteamPage {
     public static boolean waitForPageToLoad() {
         Label lblAgePage =new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
         if (!lblAgePage.waitForIsElementPresent()) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 
-    @Step("Check age")
     public BasePage checkAge(String interYear) {
         comboBoxYear.selectComboBox(interYear);
         Button btnViewPage = new Button(By.xpath(String.format(btnViewPageTemplate,getProperty("view_page_key"))));
