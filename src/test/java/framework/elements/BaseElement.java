@@ -39,7 +39,7 @@ public abstract class BaseElement extends BaseTest {
 
     public boolean waitForIsElementPresent() {
         isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
-        return false;
+        return true;
     }
 
     public List<WebElement> getElements() {
