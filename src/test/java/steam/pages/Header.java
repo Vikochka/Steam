@@ -12,7 +12,7 @@ public class Header {
 
     private Label lblLanguage = new Label(By.id("language_pulldown"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
-    private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
+    private static String btnLanguage = "//*[@id='language_dropdown']/div/a[10]";
 
     public void selectLanguage(String selectLanguage) {
         lblLanguage.click();
