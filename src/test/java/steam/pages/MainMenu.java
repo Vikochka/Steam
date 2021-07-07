@@ -11,7 +11,6 @@ public class MainMenu {
     private static String lblMenuSectionTemplate = "//a[@class='pulldown_desktop'][contains(text(),'%s')]";
     private static String lblSubSectionTemplate = "//div[contains(@class,'popup_block_new flyout_tab_flyout responsive_slidedown')]//a[contains(text(),'%s')]";
 
-    @Step("Navigate Section in tha Main Menu")
     public void navigateSection(String sectionName, String navSection) {
         Label lblMenu = new Label(By.xpath(String.format(lblMenuSectionTemplate, getProperty(sectionName))));
         lblMenu.click();

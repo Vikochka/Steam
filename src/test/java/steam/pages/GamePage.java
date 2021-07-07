@@ -14,7 +14,6 @@ public class GamePage extends BaseSteamPage {
         super(By.id(pageLocator), "Game page");
     }
 
-    @Step("Check that current game was selected")
     public boolean checkCurrentGame() {
         int max = ActionPage.getMaxDiscount();
         String text = lblGameDiscount.getText();
