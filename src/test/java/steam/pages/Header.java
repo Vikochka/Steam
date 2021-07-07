@@ -19,9 +19,12 @@ public class Header {
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         prop = new PropertyReader("localisation/loc_en.properties");
         if (!currentLanguage.waitForIsElementPresent()) {
+           // currentLanguage.click();
             lblLanguage.click();
         } else {
             currentLanguage.click();
+            //lblLanguage.click();
+
         }
     }
 
