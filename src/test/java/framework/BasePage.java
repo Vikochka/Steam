@@ -22,8 +22,8 @@ public class BasePage extends BaseTest {
     public void assertIsOpen() {
         Label elem = new Label(titleLocator, title);
         try {
-            elem.waitForElementIsPresent();
-        } catch (Exception e) {
+            elem.waitForIsElementPresent();
+        } catch (Throwable e) {
             Assert.assertTrue(true, title + " does not open");
         }
     }

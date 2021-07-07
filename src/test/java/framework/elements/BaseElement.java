@@ -103,9 +103,9 @@ public abstract class BaseElement extends BaseTest {
         return element.isSelected();
     }
 
-    public WebElement isDisplayed() {
-        element.isDisplayed();
-        return element;
+    public boolean isDisplayed() {
+        waitForIsElementPresent();
+        return element.isDisplayed();
     }
 
     public void click() {
