@@ -15,7 +15,6 @@ public class Header {
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
     private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
 
-    @Step("Chose Language")
     public void selectLanguage(String selectLanguage) {
         lblLanguage.click();
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));

@@ -19,7 +19,6 @@ public class AgePage extends BaseSteamPage {
         super(By.xpath(String.format(pageLocator,getProperty("age_check"))), "Age page");
     }
 
-    @Step("Check that Age page was loaded")
     public static boolean waitForPageToLoad() {
         Label lblAgePage =new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
         if (!lblAgePage.waitForIsElementPresent()) {

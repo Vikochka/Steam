@@ -25,7 +25,6 @@ public class BasePage extends BaseTest {
             elem.waitForIsElementPresent();
         } catch (Throwable e) {
             Assert.assertTrue(true, title + " does not open");
-
         }
     }
 }
