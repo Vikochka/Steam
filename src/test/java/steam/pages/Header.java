@@ -21,7 +21,6 @@ public class Header {
         if (!currentLanguage.isDisplayed()) {
             lblLanguage.click();
         } else {
-            //prop = new PropertyReader("localisation/loc_ru.properties");
             currentLanguage.click();
         }
     }
