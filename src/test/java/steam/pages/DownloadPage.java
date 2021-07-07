@@ -2,6 +2,7 @@ package steam.pages;
 
 import framework.elements.Button;
 import framework.elements.Label;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import java.io.File;
@@ -18,12 +19,12 @@ public class DownloadPage extends BaseSteamPage {
     public DownloadPage() {
         super(By.xpath(pageLocator), "DownloadPage");
     }
-
+    @Step("Click on Install Steam button on the Header")
     public void clickOnInstallSteam() {
         getHeader().clickOnInstallSteam();
         lblSteam.isDisplayed();
     }
-
+    @Step("Click on Install Steam button on the Download page and download SteamSetup file")
     public void downloadSteam() throws InterruptedException {
         btnInstallSteam.click();
         Thread.sleep(10000);
