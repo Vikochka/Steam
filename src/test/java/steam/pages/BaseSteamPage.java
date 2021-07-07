@@ -1,7 +1,6 @@
 package steam.pages;
 
 import framework.BasePage;
-import framework.PropertyReader;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
