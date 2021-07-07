@@ -4,6 +4,7 @@ import framework.BasePage;
 import framework.elements.Button;
 import framework.elements.ComboBox;
 import framework.elements.Label;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static framework.PropertyReader.getProperty;
@@ -18,6 +19,7 @@ public class AgePage extends BaseSteamPage {
         super(By.xpath(String.format(pageLocator,getProperty("age_check"))), "Age page");
     }
 
+    @Step("Check that Age page was loaded")
     public static boolean waitForPageToLoad() {
         Label lblAgePage =new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
         if (!lblAgePage.waitForIsElementPresent()) {
@@ -27,6 +29,7 @@ public class AgePage extends BaseSteamPage {
         }
     }
 
+    @Step("Check age")
     public BasePage checkAge(String interYear) {
         comboBoxYear.selectComboBox(interYear);
         Button btnViewPage = new Button(By.xpath(String.format(btnViewPageTemplate,getProperty("view_page_key"))));
