@@ -1,8 +1,6 @@
 package steam.pages;
 
-import framework.BasePage;
 import framework.elements.Label;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

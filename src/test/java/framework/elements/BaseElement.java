@@ -47,9 +47,9 @@ public abstract class BaseElement extends BaseTest {
         return elements;
     }
 
-    public void waitForElementIsPresent() {
-        isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
-    }
+//    public void waitForElementIsPresent() {
+//        isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
+//    }
 
     public void waitForElementsArePresent() {
         areElementsPresent(Integer.valueOf(browser.getTimeoutForCondition()));
