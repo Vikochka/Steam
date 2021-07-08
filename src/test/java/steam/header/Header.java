@@ -11,13 +11,13 @@ public class Header {
 
     private Label lblLanguage = new Label(By.xpath("//span[@id='language_pulldown']"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
-    private static String btnLanguage = "//div[@id='language_dropdown']//a[contains(text(),'%s')]";
+    private static String btnLanguage = "//a[@href='?l=english']";
 
     public void selectLanguage(String selectLanguage) {
         System.out.println("1");
         lblLanguage.clickViaJS();
         System.out.println("2");
-        TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
+        TextBox currentLanguage = new TextBox(By.xpath(btnLanguage));//(By.xpath(String.format(btnLanguage, selectLanguage)));
         if (currentLanguage.isDisplayed()) {
             System.out.println("3");
             currentLanguage.click();
