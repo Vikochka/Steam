@@ -15,7 +15,7 @@ public class Header {
 
     public void selectLanguage(String selectLanguage) {
         System.out.println("1");
-        lblLanguage.click();
+        lblLanguage.clickViaJS();//click ....
         System.out.println("2");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         if (currentLanguage.isDisplayed()) {
