@@ -15,7 +15,7 @@ public class SteamTest extends BaseTest {
     public void steamTest(String language, String year) {
 
         MainPage mainPage = new MainPage();
-        mainPage.getHeader().selectLanguage(language);
+     //   mainPage.getHeader().selectLanguage(language);
         mainPage.getMainMenu().navigateSection("categories_key", "action_key");
 
         ActionPage actionPage = new ActionPage();
