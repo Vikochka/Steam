@@ -11,7 +11,7 @@ public class Header {
 
     private Label lblLanguage = new Label(By.xpath("//span[@id='language_pulldown']"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
-    private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
+    private static String btnLanguage = "//div[@id='language_dropdown']//a[contains(text(),'%s')]";
 
     public void selectLanguage(String selectLanguage) {
         System.out.println("1");
