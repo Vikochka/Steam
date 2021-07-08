@@ -9,6 +9,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
+
 public class TestListeners implements ITestListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
@@ -19,6 +20,7 @@ public class TestListeners implements ITestListener {
     public void onTestSuccess(ITestResult iTestResult) {
         System.out.println(String.format("======================================== FINISHED TEST %s Duration: %ss ========================================", iTestResult.getName(),
                 getExecutionTime(iTestResult)));
+        takeScreenshot(iTestResult.getTestContext());
     }
 
     @Override
@@ -52,7 +54,7 @@ public class TestListeners implements ITestListener {
     @Attachment(value = "Last screen state", type = "image/png")
     private byte[] takeScreenshot(ITestContext iTestContext) {
         try {
-            return ((TakesScreenshot) iTestContext.getAttribute("driver")).getScreenshotAs(OutputType.BYTES);
+            return ((TakesScreenshot) iTestContext.getAttribute("browser")).getScreenshotAs(OutputType.BYTES);
         } catch (NoSuchSessionException | IllegalStateException ex) {
             return null;
         }
