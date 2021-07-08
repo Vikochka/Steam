@@ -16,7 +16,7 @@ public class ActionPage extends BaseSteamPage {
     public ActionPage() {
         super(By.xpath(pageLocator), "Browsing Action");
     }
-    @Step("Select game with max discount")
+
     public void selectGameWithMaxDiscount() {
         List<Integer> integers = new ArrayList<>();
         List<WebElement> discountList = lblDiscount.getElements();

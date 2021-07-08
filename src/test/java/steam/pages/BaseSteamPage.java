@@ -1,9 +1,10 @@
 package steam.pages;
 
 import framework.BasePage;
-import framework.PropertyReader;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import steam.header.Header;
+import steam.menu.MainMenu;
 
 @Getter
 public abstract class BaseSteamPage extends BasePage {
