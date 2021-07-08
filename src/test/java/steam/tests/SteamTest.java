@@ -30,11 +30,7 @@ public class SteamTest extends BaseTest {
         }
 
         DownloadPage downloadPage = new DownloadPage();
-        downloadPage.clickOnInstallSteam();
-        try {
+        downloadPage.getHeader().clickOnInstallSteam();
             downloadPage.downloadSteam();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

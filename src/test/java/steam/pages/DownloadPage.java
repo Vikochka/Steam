@@ -2,7 +2,6 @@ package steam.pages;
 
 import framework.elements.Button;
 import framework.elements.Label;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import java.io.File;
@@ -19,15 +18,14 @@ public class DownloadPage extends BaseSteamPage {
     public DownloadPage() {
         super(By.xpath(pageLocator), "DownloadPage");
     }
-    @Step("Click on Install Steam button on the Header")
-    public void clickOnInstallSteam() {
-        getHeader().clickOnInstallSteam();
-        lblSteam.isDisplayed();
-    }
-    @Step("Click on Install Steam button on the Download page and download SteamSetup file")
-    public void downloadSteam() throws InterruptedException {
+
+    public void downloadSteam() {
         btnInstallSteam.click();
-        Thread.sleep(10000);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
         File folder = new File(filePath);
         File[] listOfFiles = folder.listFiles();
@@ -44,6 +42,6 @@ public class DownloadPage extends BaseSteamPage {
                 }
             }
         }
-        assertTrue(found, "Загруженный документ не найден");
+        assertTrue(found, "Download file does not find");
     }
 }
