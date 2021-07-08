@@ -3,6 +3,7 @@ package framework.elements;
 import framework.BaseTest;
 import framework.Browser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -117,6 +118,12 @@ public abstract class BaseElement extends BaseTest {
         waitForIsElementPresent();
         element.click();
         browser.waitForPageToLoad();
+    }
+    public void clickViaJS() {
+        waitForIsElementPresent();
+        if (browser.getDriver() instanceof JavascriptExecutor) {
+            ((JavascriptExecutor) browser.getDriver()).executeScript("arguments[0].click()", element);
+        }
     }
 
     public String getText() {

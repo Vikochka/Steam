@@ -15,16 +15,16 @@ public class Header {
 
     public void selectLanguage(String selectLanguage) {
         System.out.println("1");
-        lblLanguage.click();
+        lblLanguage.clickViaJS();//click ....
         System.out.println("2");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         if (currentLanguage.isDisplayed()) {
             System.out.println("3");
-            currentLanguage.click();
+            currentLanguage.clickViaJS();
             System.out.println("4");
         } else {
             System.out.println("5");
-            lblLanguage.click();
+            lblLanguage.clickViaJS();
         }
     }
 

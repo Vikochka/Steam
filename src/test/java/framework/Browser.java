@@ -88,7 +88,6 @@ public class Browser {
         } catch (Exception e) {
             Assert.fail("Page does not Load");
         }
-        // Logger.getInstance().info("waitForPageToLoad ended");
     }
 
     public void windowMaximise() {
