@@ -22,9 +22,7 @@ public class Header {
         } else {
             lblLanguage.click();
             prop = new PropertyReader("localisation/loc_ru.properties");
-
         }
-
     }
 
     public void clickOnInstallSteam() {
