@@ -1,4 +1,4 @@
-package steam.pages;
+package steam.pageObject.pages;
 
 import framework.elements.Label;
 import org.openqa.selenium.By;

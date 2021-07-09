@@ -69,7 +69,7 @@ public class Browser {
         return  timeoutForPageLoad;
     }
 
-    public void waitForPageToLoad() {
+    public boolean waitForPageToLoad() {
         WebDriverWait wait = new WebDriverWait(driver, Long.parseLong(getTimeoutForPageLoad()));
         try {
             wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
@@ -88,6 +88,7 @@ public class Browser {
         } catch (Exception e) {
             Assert.fail("Page does not Load");
         }
+        return true;
     }
 
     public void windowMaximise() {

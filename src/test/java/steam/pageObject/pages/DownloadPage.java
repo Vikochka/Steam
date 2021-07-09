@@ -1,7 +1,6 @@
-package steam.pages;
+package steam.pageObject.pages;
 
 import framework.elements.Button;
-import framework.elements.Label;
 import org.openqa.selenium.By;
 
 import java.io.File;
@@ -12,14 +11,14 @@ import static org.testng.Assert.assertTrue;
 public class DownloadPage extends BaseSteamPage {
     private static String pageLocator = "//div[@class='steam_logo']";
 
-    private Label lblSteam = new Label(By.xpath("//div[@class='about_subtitle']"));
     private Button btnInstallSteam = new Button(By.xpath("//div[@id='about_greeting']//a[@class='about_install_steam_link']"));
 
     public DownloadPage() {
-        super(By.xpath(pageLocator), "DownloadPage");
+        super(By.xpath(pageLocator), "Download page");
     }
 
     public void downloadSteam() {
+        System.out.println("install steam");
         btnInstallSteam.click();
         try {
             Thread.sleep(7000);

@@ -1,4 +1,4 @@
-package steam.menu;
+package steam.pageObject.menu;
 
 import framework.elements.Label;
 import org.openqa.selenium.By;

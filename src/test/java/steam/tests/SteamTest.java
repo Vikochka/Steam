@@ -1,10 +1,10 @@
 package steam.tests;
 
 import io.qameta.allure.Step;
-import steam.pages.*;
 import framework.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import steam.pageObject.pages.*;
 
 
 public class SteamTest extends BaseTest {
@@ -24,13 +24,13 @@ public class SteamTest extends BaseTest {
         if (AgePage.waitForPageToLoad()) {
             AgePage agePage = new AgePage();
             agePage.checkAge(year);
-        }else {
+        } else {
             GamePage gamePage = new GamePage();
             gamePage.checkCurrentGame();
         }
 
         DownloadPage downloadPage = new DownloadPage();
         downloadPage.getHeader().clickOnInstallSteam();
-            downloadPage.downloadSteam();
+        downloadPage.downloadSteam();
     }
 }

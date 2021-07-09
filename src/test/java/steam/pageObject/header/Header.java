@@ -1,4 +1,4 @@
-package steam.header;
+package steam.pageObject.header;
 
 import framework.PropertyReader;
 import framework.elements.Button;
@@ -14,13 +14,6 @@ public class Header {
     private static Label lblpopup = new Label(By.xpath("//div[@id='language_dropdown']"));
 
     public void selectLanguage(String selectLanguage) {
-//        System.out.println("1");
-//        lblLanguage.click();
-//        System.out.println("2");
-//        lblpopup.isDisplayed();
-//        System.out.println("i see popup");
-
-
         String language = lblLanguage.getText();
         System.out.println(lblLanguage.getText() + " site");
 
@@ -36,15 +29,6 @@ public class Header {
             System.out.println(("site opening on english"));
             prop = new PropertyReader("localisation/loc_en.properties");
         }
-//        if (!currentLanguage.isDisplayed()) {
-//            System.out.println("lang does not appeared");
-//            lblLanguage.click();
-//            System.out.println("click on lblLanguage");
-//        } else {
-//            System.out.println("lang is appeared");
-//            currentLanguage.click();
-//            System.out.println("click on the language selected");
-//        }
     }
 
     public void clickOnInstallSteam() {

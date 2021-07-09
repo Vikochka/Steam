@@ -1,4 +1,4 @@
-package steam.pages;
+package steam.pageObject.pages;
 
 import framework.BasePage;
 import framework.elements.Button;
@@ -20,17 +20,17 @@ public class AgePage extends BaseSteamPage {
 
     public static boolean waitForPageToLoad() {
         Label lblAgePage =new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
-        if (lblAgePage.waitForIsElementPresent()) {
-            return false;
-        } else {
+        if (lblAgePage.isDisplayed()) {
             return true;
+        } else {
+            return false;
         }
     }
 
-    public BasePage checkAge(String interYear) {
+    public void checkAge(String interYear) {
         comboBoxYear.selectComboBox(interYear);
         Button btnViewPage = new Button(By.xpath(String.format(btnViewPageTemplate,getProperty("view_page_key"))));
         btnViewPage.clickAndWait();
-        return new GamePage();
+
     }
 }
