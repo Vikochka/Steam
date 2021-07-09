@@ -24,17 +24,17 @@ public class Header {
         String language = lblLanguage.getText();
         System.out.println(lblLanguage.getText() + " site");
 
-        if (language == "язык"){
+        if (language.equals("язык")){
             System.out.println("site opening on russian");
-            prop = new PropertyReader("localisation/loc_en.properties");
             lblLanguage.click();
-            TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
             System.out.println("i see lang");
+            TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
             currentLanguage.click();
             System.out.println("click on the language selected");
+            prop = new PropertyReader("localisation/loc_en.properties");
         }else{
-            prop=  new PropertyReader("localisation/loc_en.properties");
             System.out.println(("site opening on english"));
+            prop = new PropertyReader("localisation/loc_en.properties");
         }
 //        if (!currentLanguage.isDisplayed()) {
 //            System.out.println("lang does not appeared");
