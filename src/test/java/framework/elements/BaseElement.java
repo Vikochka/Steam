@@ -53,7 +53,7 @@ public abstract class BaseElement extends BaseTest {
     }
 
     public boolean isElementPresent(int timeout) {
-        WebDriverWait wait = new WebDriverWait(browser.getDriver(), timeout);
+       wait = new WebDriverWait(browser.getDriver(), timeout);
         try {
             browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
             element = browser.getDriver().findElement(by);
@@ -65,7 +65,7 @@ public abstract class BaseElement extends BaseTest {
     }
 
     public boolean areElementsPresent(int timeout) {
-        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
+        wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
         browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
         try {
             wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {

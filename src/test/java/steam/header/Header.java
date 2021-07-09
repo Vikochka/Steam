@@ -12,7 +12,7 @@ public class Header {
     private Label lblLanguage = new Label(By.xpath("//span[@id='language_pulldown']"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
     private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
-    private static Label lblpopup= new Label(By.xpath("//div[@id='language_dropdown']"));
+    private static Label lblpopup = new Label(By.xpath("//div[@id='language_dropdown']"));
 
     public void selectLanguage(String selectLanguage) {
         System.out.println("1");
@@ -21,15 +21,15 @@ public class Header {
         lblpopup.isDisplayed();
         System.out.println("i see popup");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
-     //   currentLanguage.waitForIsElementPresent();
         System.out.println("i see lang");
-        if (!currentLanguage.isElementPresent(PropertyReader.getIntProperty("timeoutElement"))) {
-            System.out.println("lang is appeared");
+        if (!currentLanguage.waitForIsElementPresent()) {
+//            System.out.println("lang is appeared");
             lblLanguage.click();
             System.out.println("lang does not appeared");
 //            currentLanguage.click();
 //            System.out.println("click on the language selected");
         } else {
+            System.out.println("lang is appeared");
             currentLanguage.click();
             System.out.println("click on the language selected");
 //            lblLanguage.click();
