@@ -22,7 +22,7 @@ public class DownloadPage extends BaseSteamPage {
     public void downloadSteam() {
         btnInstallSteam.click();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

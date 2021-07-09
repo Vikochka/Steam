@@ -26,10 +26,12 @@ public class Header {
         String language = lblLanguage.getText();
         System.out.println(lblLanguage.getText());
 
-        if (language.equals("язык")){
+        if (!language.equals(prop.getProperty("lang"))){
             lblLanguage.click();
             currentLanguage.click();
             System.out.println("click on the language selected");
+        }else {
+            System.out.println("Site opening on" + prop.getProperty("lang"));
         }
 //        if (!currentLanguage.isDisplayed()) {
 //            System.out.println("lang does not appeared");
