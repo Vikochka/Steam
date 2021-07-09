@@ -26,7 +26,7 @@ public class Header {
         if (currentLanguage.isDisplayed()) {
             System.out.println("lang is appeared");
             currentLanguage.click();
-            System.out.println("click on the current lang");
+            System.out.println("click on the language selected");
         } else {
             lblLanguage.click();
             System.out.println("lang does not appeared");
