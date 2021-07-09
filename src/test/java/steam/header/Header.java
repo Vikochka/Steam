@@ -21,7 +21,8 @@ public class Header {
         lblpopup.isDisplayed();
         System.out.println("i see you");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
-        System.out.println("6");
+        currentLanguage.waitForIsElementPresent();
+        System.out.println("i see english");
         if (currentLanguage.isDisplayed()) {
             System.out.println("3");
             currentLanguage.click();
