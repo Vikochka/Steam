@@ -24,7 +24,7 @@ public class Header {
         String language = lblLanguage.getText();
         System.out.println(lblLanguage.getText() + " site");
 
-        if (language != "language"){
+        if (language == "язык"){
             System.out.println("site opening on russian");
             prop = new PropertyReader("localisation/loc_en.properties");
             lblLanguage.click();
@@ -33,7 +33,7 @@ public class Header {
             currentLanguage.click();
             System.out.println("click on the language selected");
         }else{
-            prop=  new PropertyReader("localisation/loc_ru.properties");
+            prop=  new PropertyReader("localisation/loc_en.properties");
             System.out.println(("site opening on english"));
         }
 //        if (!currentLanguage.isDisplayed()) {
