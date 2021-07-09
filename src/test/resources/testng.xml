@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="steam" parallel="tests" thread-count="1">
     <test name="steam">
-        <parameter name="language" value="Deutsch"></parameter>
+        <parameter name="language" value="Русский"></parameter>
         <parameter name="year" value="1981"></parameter>
         <classes>
             <class name="steam.tests.SteamTest"/>
