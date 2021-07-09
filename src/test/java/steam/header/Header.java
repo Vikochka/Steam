@@ -22,18 +22,14 @@ public class Header {
         System.out.println("i see popup");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         System.out.println("i see lang");
-        if (!currentLanguage.waitForIsElementPresent()) {
-//            System.out.println("lang is appeared");
-            lblLanguage.click();
+        if (!currentLanguage.isDisplayed()) {
             System.out.println("lang does not appeared");
-//            currentLanguage.click();
-//            System.out.println("click on the language selected");
+            lblLanguage.click();
+            System.out.println("click on lblLanguage");
         } else {
             System.out.println("lang is appeared");
             currentLanguage.click();
             System.out.println("click on the language selected");
-//            lblLanguage.click();
-//            System.out.println("lang does not appeared");
         }
     }
 
