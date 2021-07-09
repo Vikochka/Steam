@@ -23,7 +23,7 @@ public class Header {
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
      //   currentLanguage.waitForIsElementPresent();
         System.out.println("i see lang");
-        if (!currentLanguage.isDisplayed()) {
+        if (!currentLanguage.waitForIsElementPresent()) {
             System.out.println("lang is appeared");
             lblLanguage.click();
             System.out.println("lang does not appeared");
