@@ -19,17 +19,17 @@ public class Header {
         lblLanguage.clickViaJS();
         System.out.println("2");
         lblpopup.isDisplayed();
-        System.out.println("i see you");
+        System.out.println("i see popup");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         currentLanguage.waitForIsElementPresent();
         System.out.println("i see lang");
         if (currentLanguage.isDisplayed()) {
-            System.out.println("3");
+            System.out.println("lang is appeared");
             currentLanguage.click();
-            System.out.println("4");
+            System.out.println("click on the current lang");
         } else {
-            System.out.println("5");
             lblLanguage.click();
+            System.out.println("lang does not appeared");
         }
     }
 
