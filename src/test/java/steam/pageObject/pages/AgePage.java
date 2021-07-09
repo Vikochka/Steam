@@ -1,6 +1,5 @@
 package steam.pageObject.pages;
 
-import framework.BasePage;
 import framework.elements.Button;
 import framework.elements.ComboBox;
 import framework.elements.Label;
@@ -15,22 +14,22 @@ public class AgePage extends BaseSteamPage {
     private static ComboBox comboBoxYear = new ComboBox(By.id("ageYear"));
 
     public AgePage() {
-        super(By.xpath(String.format(pageLocator,getProperty("age_check"))), "Age page");
+        super(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
     }
 
     public static boolean waitForPageToLoad() {
-        Label lblAgePage =new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
-        if (lblAgePage.isDisplayed()) {
+        Label lblAgePage = new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
+        if (!lblAgePage.waitForIsElementPresent()) {
             return true;
         } else {
             return false;
         }
     }
 
-    public void checkAge(String interYear) {
+    public BaseSteamPage checkAge(String interYear) {
         comboBoxYear.selectComboBox(interYear);
-        Button btnViewPage = new Button(By.xpath(String.format(btnViewPageTemplate,getProperty("view_page_key"))));
+        Button btnViewPage = new Button(By.xpath(String.format(btnViewPageTemplate, getProperty("view_page_key"))));
         btnViewPage.clickAndWait();
-
+        return new GamePage();
     }
 }

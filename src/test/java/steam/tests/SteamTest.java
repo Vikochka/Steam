@@ -22,6 +22,7 @@ public class SteamTest extends BaseTest {
         actionPage.selectGameWithMaxDiscount();
 
         if (AgePage.waitForPageToLoad()) {
+            System.out.println("popa");
             AgePage agePage = new AgePage();
             agePage.checkAge(year);
         } else {
