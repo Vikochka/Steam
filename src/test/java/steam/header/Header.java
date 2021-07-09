@@ -7,8 +7,7 @@ import framework.elements.TextBox;
 import org.openqa.selenium.By;
 
 public class Header {
-    PropertyReader prop = new PropertyReader("localisation/loc_en.properties");
-
+    PropertyReader prop;
     private Label lblLanguage = new Label(By.xpath("//span[@id='language_pulldown']"));
     private Button btnInstallSteam = new Button(By.xpath("//a[@class='header_installsteam_btn_content']"));
     private static String btnLanguage = "//a[@class='popup_menu_item tight'][contains(text(),'%s')]";
@@ -20,18 +19,22 @@ public class Header {
 //        System.out.println("2");
 //        lblpopup.isDisplayed();
 //        System.out.println("i see popup");
-        TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
-        System.out.println("i see lang");
+
 
         String language = lblLanguage.getText();
-        System.out.println(lblLanguage.getText());
+        System.out.println(lblLanguage.getText() + " site");
 
-        if (!language.equals(prop.getProperty("lang"))){
+        if (language != "language"){
+            System.out.println("site opening on russian");
+            prop = new PropertyReader("localisation/loc_en.properties");
             lblLanguage.click();
+            TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
+            System.out.println("i see lang");
             currentLanguage.click();
             System.out.println("click on the language selected");
-        }else {
-            System.out.println("Site opening on" + prop.getProperty("lang"));
+        }else{
+            prop=  new PropertyReader("localisation/loc_ru.properties");
+            System.out.println(("site opening on english"));
         }
 //        if (!currentLanguage.isDisplayed()) {
 //            System.out.println("lang does not appeared");
