@@ -22,7 +22,7 @@ public class Header {
         System.out.println("i see you");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         currentLanguage.waitForIsElementPresent();
-        System.out.println("i see english");
+        System.out.println("i see lang");
         if (currentLanguage.isDisplayed()) {
             System.out.println("3");
             currentLanguage.click();
