@@ -15,22 +15,31 @@ public class Header {
     private static Label lblpopup = new Label(By.xpath("//div[@id='language_dropdown']"));
 
     public void selectLanguage(String selectLanguage) {
-        System.out.println("1");
-        lblLanguage.click();
-        System.out.println("2");
-        lblpopup.isDisplayed();
-        System.out.println("i see popup");
+//        System.out.println("1");
+//        lblLanguage.click();
+//        System.out.println("2");
+//        lblpopup.isDisplayed();
+//        System.out.println("i see popup");
         TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
         System.out.println("i see lang");
-        if (!currentLanguage.isDisplayed()) {
-            System.out.println("lang does not appeared");
+
+        String language = lblLanguage.getText();
+        System.out.println(lblLanguage.getText());
+
+        if (language.equals("язык")){
             lblLanguage.click();
-            System.out.println("click on lblLanguage");
-        } else {
-            System.out.println("lang is appeared");
             currentLanguage.click();
             System.out.println("click on the language selected");
         }
+//        if (!currentLanguage.isDisplayed()) {
+//            System.out.println("lang does not appeared");
+//            lblLanguage.click();
+//            System.out.println("click on lblLanguage");
+//        } else {
+//            System.out.println("lang is appeared");
+//            currentLanguage.click();
+//            System.out.println("click on the language selected");
+//        }
     }
 
     public void clickOnInstallSteam() {
