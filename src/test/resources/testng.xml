@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="steam" parallel="tests" thread-count="1">
-    <listeners>
-        <listener class-name="framework.TestListeners"/>
-    </listeners>
     <test name="steam">
         <parameter name="language" value="English"></parameter>
         <parameter name="year" value="1981"></parameter>
