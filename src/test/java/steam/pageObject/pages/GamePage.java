@@ -3,6 +3,8 @@ package steam.pageObject.pages;
 import framework.elements.Label;
 import org.openqa.selenium.By;
 
+import static framework.PropertyReader.getProperty;
+
 public class GamePage extends BaseSteamPage {
 
     private static String pageLocator = "appHubAppName";

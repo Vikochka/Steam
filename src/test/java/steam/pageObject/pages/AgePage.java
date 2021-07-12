@@ -4,6 +4,7 @@ import framework.elements.Button;
 import framework.elements.ComboBox;
 import framework.elements.Label;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 import static framework.PropertyReader.getProperty;
 
@@ -18,7 +19,7 @@ public class AgePage extends BaseSteamPage {
     }
 
     public static boolean waitForPageToLoad() {
-        Label lblAgePage = new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))), "Age page");
+        Label lblAgePage = new Label(By.xpath(String.format(pageLocator, getProperty("age_check"))));
         if (!lblAgePage.waitForIsElementPresent()) {
             System.out.println("Age page appeared");
             return true;

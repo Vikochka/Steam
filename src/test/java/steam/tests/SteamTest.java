@@ -21,7 +21,8 @@ public class SteamTest extends BaseTest {
         ActionPage actionPage = new ActionPage();
         actionPage.selectGameWithMaxDiscount();
 
-        if (AgePage.waitForPageToLoad()) {
+        String projectId = browser.getLocation().split("/")[3];
+        if (projectId == "agecheck") {
             System.out.println("Age page was opened");
             AgePage agePage = new AgePage();
             agePage.checkAge(year);
@@ -29,10 +30,10 @@ public class SteamTest extends BaseTest {
             System.out.println("Game page was opened");
             GamePage gamePage = new GamePage();
             gamePage.checkCurrentGame();
+            gamePage.getHeader().clickOnInstallSteam();
         }
 
-        DownloadPage downloadPage = new DownloadPage();
-        downloadPage.getHeader().clickOnInstallSteam();
-        downloadPage.downloadSteam();
+            DownloadPage downloadPage = new DownloadPage();
+            downloadPage.downloadSteam();
+        }
     }
-}

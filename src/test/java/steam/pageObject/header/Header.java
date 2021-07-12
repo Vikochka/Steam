@@ -6,7 +6,6 @@ import framework.elements.Label;
 import framework.elements.TextBox;
 import org.openqa.selenium.By;
 
-import static framework.PropertyReader.getProperty;
 
 public class Header {
     PropertyReader prop;
@@ -17,6 +16,7 @@ public class Header {
 
     public void selectLanguage(String selectLanguage) {
         String language = lblLanguage.getText();
+
         if (language.equals("язык")){
             System.out.println("Site opening on russian");
             lblLanguage.click();
@@ -32,5 +32,6 @@ public class Header {
 
     public void clickOnInstallSteam() {
         btnInstallSteam.clickAndWait();
+        System.out.println("Click on install Steam");
     }
 }
