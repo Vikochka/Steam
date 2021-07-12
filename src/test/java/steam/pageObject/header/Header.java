@@ -6,6 +6,8 @@ import framework.elements.Label;
 import framework.elements.TextBox;
 import org.openqa.selenium.By;
 
+import static framework.PropertyReader.getProperty;
+
 public class Header {
     PropertyReader prop;
     private Label lblLanguage = new Label(By.xpath("//span[@id='language_pulldown']"));
@@ -15,18 +17,15 @@ public class Header {
 
     public void selectLanguage(String selectLanguage) {
         String language = lblLanguage.getText();
-        System.out.println(lblLanguage.getText() + " site");
-
         if (language.equals("язык")){
-            System.out.println("site opening on russian");
+            System.out.println("Site opening on russian");
             lblLanguage.click();
-            System.out.println("i see lang");
             TextBox currentLanguage = new TextBox(By.xpath(String.format(btnLanguage, selectLanguage)));
             currentLanguage.click();
-            System.out.println("click on the language selected");
+            System.out.println("Click on the language selected");
             prop = new PropertyReader("localisation/loc_en.properties");
         }else{
-            System.out.println(("site opening on english"));
+            System.out.println(("Site opening on english"));
             prop = new PropertyReader("localisation/loc_en.properties");
         }
     }

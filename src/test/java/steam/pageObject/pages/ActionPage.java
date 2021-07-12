@@ -16,6 +16,7 @@ public class ActionPage extends BaseSteamPage {
     }
 
     public void selectGameWithMaxDiscount() {
+        System.out.println("Select game with max discount");
         List<Integer> integers = new ArrayList<>();
         List<WebElement> discountList = lblDiscount.getElements();
         int convert = 0;

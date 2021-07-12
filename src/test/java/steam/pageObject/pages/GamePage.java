@@ -14,6 +14,8 @@ public class GamePage extends BaseSteamPage {
     }
 
     public boolean checkCurrentGame() {
+        System.out.println("Check current game");
+
         int max = ActionPage.getMaxDiscount();
         String text = lblGameDiscount.getText();
         String[] discount = text.split("%");

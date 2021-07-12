@@ -18,18 +18,22 @@ public class DownloadPage extends BaseSteamPage {
     }
 
     public void downloadSteam() {
-        System.out.println("install steam");
+        System.out.println("Start install steam");
         btnInstallSteam.click();
         try {
             Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("Finish install steam");
+
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
         File folder = new File(filePath);
         File[] listOfFiles = folder.listFiles();
         boolean found = false;
         File file = null;
+
+        System.out.println("Check that download file was appeared in the directory ");
 
         for (File fileItem : listOfFiles) {
             if (fileItem.isFile()) {
