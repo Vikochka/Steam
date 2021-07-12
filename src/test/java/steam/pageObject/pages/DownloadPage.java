@@ -21,7 +21,7 @@ public class DownloadPage extends BaseSteamPage {
         System.out.println("Start install steam");
         btnInstallSteam.click();
         try {
-            Thread.sleep(7000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -42,9 +42,22 @@ public class DownloadPage extends BaseSteamPage {
                 if (fileName.matches(fileName)) {
                     file = new File(fileName);
                     found = true;
+                    file.deleteOnExit();
                 }
             }
         }
         assertTrue(found, "Download file does not find");
+
+    }
+
+    public void deleteFile() {
+        File file = new File("src/test/resources/downloads/SteamSetup.exe");
+        String filepath = file.getAbsolutePath();
+        System.out.println(filepath);
+        if (file.delete()) {
+            System.out.println("file delete");
+        } else {
+            System.out.println("file didn't delete");
+        }
     }
 }
