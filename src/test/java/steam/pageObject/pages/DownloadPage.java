@@ -1,10 +1,16 @@
 package steam.pageObject.pages;
 
+import framework.Browser;
 import framework.elements.Button;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
+import java.time.Duration;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
+import static framework.PropertyReader.getIntProperty;
 import static framework.PropertyReader.getProperty;
 import static org.testng.Assert.assertTrue;
 
@@ -19,32 +25,33 @@ public class DownloadPage extends BaseSteamPage {
 
     public void downloadSteam() {
         System.out.println("Start install steam");
-        btnInstallSteam.click();
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Finish install steam");
 
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
-        File folder = new File(filePath);
-        File[] listOfFiles = folder.listFiles();
-        boolean found = false;
-        File file = null;
 
-        System.out.println("Check that download file was appeared in the directory ");
-
-        for (File fileItem : listOfFiles) {
-            if (fileItem.isFile()) {
-                String fileName = fileItem.getName();
-                System.out.println("File " + fileItem.getName());
-                if (fileName.matches(fileName)) {
-                    file = new File(fileName);
-                    found = true;
+        FluentWait<Browser> wait = new FluentWait<>(browser)
+                .withTimeout(Duration.ofMillis(3000))
+                .pollingEvery(Duration.ofMillis(200))
+                .ignoring(Exception.class);
+        btnInstallSteam.click();
+        wait.until((x) -> {
+            File[] files = new File(filePath).listFiles();
+            for (File file : files) {
+                if (file.getName().contains(getProperty("fileSetup"))) {
+                    return true;
                 }
             }
+            return false;
+        });
+        System.out.println("Finish install steam");
+    }
+
+
+    public void deleteFile() {
+        File file = new File(getProperty("pathtodelete")+getProperty("fileSetup"));
+        if (file.delete()) {
+            System.out.println("File deleted");
+        } else {
+            System.out.println("File didn't delete");
         }
-        assertTrue(found, "Download file does not find");
     }
 }

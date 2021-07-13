@@ -35,5 +35,6 @@ public class SteamTest extends BaseTest {
 
             DownloadPage downloadPage = new DownloadPage();
             downloadPage.downloadSteam();
+            downloadPage.deleteFile();
         }
     }
