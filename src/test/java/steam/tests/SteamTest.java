@@ -23,7 +23,7 @@ public class SteamTest extends BaseTest {
 
         String page = browser.getLocation().split("/")[3];
         System.out.println(page);
-        String namePage= "app";
+        String namePage = "app";
         if (!page.equals(namePage)) {
             System.out.println("Age page was opened");
             AgePage agePage = new AgePage();
@@ -38,8 +38,8 @@ public class SteamTest extends BaseTest {
             gamePage.getHeader().clickOnInstallSteam();
         }
 
-            DownloadPage downloadPage = new DownloadPage();
-            downloadPage.downloadSteam();
-            downloadPage.deleteFile();
-        }
+        DownloadPage downloadPage = new DownloadPage();
+        downloadPage.downloadSteam();
+        downloadPage.deleteFile();
     }
+}
