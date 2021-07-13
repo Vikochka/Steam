@@ -7,12 +7,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static framework.PropertyReader.getIntProperty;
 import static framework.PropertyReader.getProperty;
-import static org.testng.Assert.assertTrue;
 
 public class DownloadPage extends BaseSteamPage {
     private static String pageLocator = "//div[@class='steam_logo']";
@@ -44,7 +39,6 @@ public class DownloadPage extends BaseSteamPage {
         });
         System.out.println("Finish install steam");
     }
-
 
     public void deleteFile() {
         File file = new File(getProperty("pathtodelete")+getProperty("fileSetup"));
