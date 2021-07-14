@@ -120,7 +120,7 @@ public abstract class BaseElement extends BaseTest {
     public void click() {
         waitForIsElementPresent();
         element.click();
-        log.info(getProperty("log.click") + ": " + element.getText());
+        log.info(getProperty("log.click") + ": " + getElementType() +": "+ element.getText());
     }
 
     public void clickAndWait() {
