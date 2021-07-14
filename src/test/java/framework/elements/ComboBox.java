@@ -12,7 +12,7 @@ public class ComboBox extends BaseElement {
     }
 
     protected String getElementType() {
-        return null;
+        return getLoc("log.combo.box");
     }
 
     public String[] split(String value) {

@@ -13,8 +13,8 @@ public class Button extends BaseElement {
         super(by, name);
     }
 
-    public String getElementType() {
-        return getElementType();
+    protected String getElementType() {
+        return getLoc("log.button");
     }
 
     public String[] split(String value) {

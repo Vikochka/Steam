@@ -2,11 +2,12 @@ package steam.tests;
 
 import io.qameta.allure.Step;
 import framework.BaseTest;
+import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import steam.pageObject.pages.*;
 
-
+@Log4j2
 public class SteamTest extends BaseTest {
 
     @Parameters({"language", "year"})
@@ -22,17 +23,17 @@ public class SteamTest extends BaseTest {
         actionPage.selectGameWithMaxDiscount();
 
         String page = browser.getLocation().split("/")[3];
-        System.out.println(page);
+        log.info(page);
         String namePage = "app";
         if (!page.equals(namePage)) {
-            System.out.println("Age page was opened");
+            log.info("Age page was opened");
             AgePage agePage = new AgePage();
             agePage.checkAge(year);
             GamePage gamePage = new GamePage();
             gamePage.checkCurrentGame();
             gamePage.getHeader().clickOnInstallSteam();
         } else {
-            System.out.println("Game page was opened");
+            log.info("Game page was opened");
             GamePage gamePage = new GamePage();
             gamePage.checkCurrentGame();
             gamePage.getHeader().clickOnInstallSteam();

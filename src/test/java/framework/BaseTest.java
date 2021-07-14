@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
+
     protected static Browser browser = Browser.getInstance();
     protected ITestContext context;
 

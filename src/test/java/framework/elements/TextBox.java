@@ -13,7 +13,7 @@ public class TextBox extends BaseElement {
     }
 
     public String getElementType() {
-        return getElementType();
+        return getLoc("log.text.box");
     }
 
     public void type(final String value) {
@@ -31,13 +31,16 @@ public class TextBox extends BaseElement {
         return new String[0];
     }
 
-
     public int size() {
         return 0;
     }
 
-
     public String getAttribute(String href) {
         return null;
+    }
+
+    public String getValue() {
+        waitForIsElementPresent();
+        return element.getAttribute("value");
     }
 }

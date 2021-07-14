@@ -12,8 +12,8 @@ public class Label extends BaseElement {
         super(by, name);
     }
 
-    public String getElementType() {
-       return getElementType();
+    protected String getElementType() {
+        return getLoc("log.label");
     }
 
 

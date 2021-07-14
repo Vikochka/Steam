@@ -14,7 +14,7 @@ public class Checkbox extends BaseElement {
     }
 
     public String getElementType() {
-       return getElementType();
+        return getLoc("log.check.box");
     }
 
 

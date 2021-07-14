@@ -2,13 +2,16 @@ package steam.pageObject.pages;
 
 import framework.Browser;
 import framework.elements.Button;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
 import java.time.Duration;
+
 import static framework.PropertyReader.getProperty;
 
+@Log4j2
 public class DownloadPage extends BaseSteamPage {
     private static String pageLocator = "//div[@class='steam_logo']";
 
@@ -19,12 +22,12 @@ public class DownloadPage extends BaseSteamPage {
     }
 
     public void downloadSteam() {
-        System.out.println("Start install steam");
+        log.info("Start install Steam");
 
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
 
         FluentWait<Browser> wait = new FluentWait<>(browser)
-                .withTimeout(Duration.ofMillis(3000))
+                .withTimeout(Duration.ofMillis(20000))
                 .pollingEvery(Duration.ofMillis(200))
                 .ignoring(Exception.class);
         btnInstallSteam.click();
@@ -32,20 +35,21 @@ public class DownloadPage extends BaseSteamPage {
             File[] files = new File(filePath).listFiles();
             for (File file : files) {
                 if (file.getName().contains(getProperty("fileSetup"))) {
+                    log.info("File appeared in the folder: " + filePath);
                     return true;
                 }
             }
             return false;
         });
-        System.out.println("Finish install steam");
+        log.info("Finish install steam");
     }
 
     public void deleteFile() {
-        File file = new File(getProperty("pathtodelete")+getProperty("fileSetup"));
+        File file = new File(getProperty("pathtodelete") + getProperty("fileSetup"));
         if (file.delete()) {
-            System.out.println("File deleted");
+            log.info("File deleted");
         } else {
-            System.out.println("File didn't delete");
+            log.info("File didn't delete");
         }
     }
 }
