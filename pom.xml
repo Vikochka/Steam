@@ -73,12 +73,14 @@
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven-plugin -->
         <dependency>
             <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
+            <artifactId>lombok-maven-plugin</artifactId>
+            <version>1.18.20.0</version>
             <scope>provided</scope>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
