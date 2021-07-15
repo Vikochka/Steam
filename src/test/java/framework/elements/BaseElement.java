@@ -4,8 +4,6 @@ import framework.BaseTest;
 import framework.Browser;
 import framework.PropertyReader;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -120,7 +118,7 @@ public abstract class BaseElement extends BaseTest {
     public void click() {
         waitForIsElementPresent();
         element.click();
-        log.info(getProperty("log.click") + ": " + getElementType() +": "+ element.getText());
+        log.info(getProperty("log.click") + ": " + getElementType() + ": " + element.getText());
     }
 
     public void clickAndWait() {
@@ -128,7 +126,6 @@ public abstract class BaseElement extends BaseTest {
         element.click();
         browser.waitForPageToLoad();
         log.info(getProperty("log.click") + ": " + getElementType() + " = " + by + ". And waits for the page to load ");
-
     }
 
     public void clickViaJS() {
@@ -163,10 +160,4 @@ public abstract class BaseElement extends BaseTest {
         select.selectByVisibleText(value);
         log.info(getLoc("log.select") + ": " + value);
     }
-
-    public abstract String[] split(String value);
-
-    public abstract int size();
-
-    public abstract String getAttribute(String href);
 }

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.io.File;
 import java.time.Duration;
 
+import static framework.PropertyReader.getIntProperty;
 import static framework.PropertyReader.getProperty;
 
 @Log4j2
@@ -27,8 +28,8 @@ public class DownloadPage extends BaseSteamPage {
         String filePath = System.getProperty("user.dir") + getProperty("filePath");
 
         FluentWait<Browser> wait = new FluentWait<>(browser)
-                .withTimeout(Duration.ofMillis(20000))
-                .pollingEvery(Duration.ofMillis(200))
+                .withTimeout(Duration.ofSeconds(getIntProperty("timeoutElement")))
+                .pollingEvery(Duration.ofMillis(getIntProperty("pollingEvery")))
                 .ignoring(Exception.class);
         btnInstallSteam.click();
         wait.until((x) -> {

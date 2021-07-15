@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 
 public class Checkbox extends BaseElement {
 
-
     public Checkbox(By by) {
         super(by);
     }
@@ -25,7 +24,6 @@ public class Checkbox extends BaseElement {
     public int size() {
         return 0;
     }
-
 
     public String getAttribute(String href) {
         return null;

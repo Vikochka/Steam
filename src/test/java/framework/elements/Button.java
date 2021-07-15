@@ -16,19 +16,4 @@ public class Button extends BaseElement {
     protected String getElementType() {
         return getLoc("log.button");
     }
-
-    public String[] split(String value) {
-        return new String[0];
-    }
-
-    public int size() {
-        return 0;
-    }
-    public String getAttribute(String href) {
-        return null;
-    }
-
-    public void clickButton() {
-        click();
-    }
 }

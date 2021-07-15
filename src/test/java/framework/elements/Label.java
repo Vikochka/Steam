@@ -15,18 +15,4 @@ public class Label extends BaseElement {
     protected String getElementType() {
         return getLoc("log.label");
     }
-
-
-    public String[] split(String value) {
-        return new String[0];
-    }
-
-    public int size() {
-        return 0;
-    }
-
-
-    public String getAttribute(String href) {
-        return null;
-    }
 }
