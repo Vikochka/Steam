@@ -1,7 +1,6 @@
-package steam.pages;
+package steam.pageObject.pages;
 
 import org.openqa.selenium.By;
-
 
 public class MainPage extends BaseSteamPage {
 

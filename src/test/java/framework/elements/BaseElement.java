@@ -2,6 +2,8 @@ package framework.elements;
 
 import framework.BaseTest;
 import framework.Browser;
+import framework.PropertyReader;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -14,13 +16,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static framework.PropertyReader.getProperty;
+
+@Log4j2
 public abstract class BaseElement extends BaseTest {
+    PropertyReader propertyReader = new PropertyReader("localisation/loc_en.properties");
     protected WebElement element;
     protected List<WebElement> elements;
     private By by;
     private String name;
     private WebDriverWait wait;
-    private static final int TIMEOUT_WAIT_0 = 0;
+
+    public static String getLoc(final String key) {
+        return getProperty(key);
+    }
 
     public WebElement getElement() {
         waitForIsElementPresent();
@@ -40,7 +49,7 @@ public abstract class BaseElement extends BaseTest {
 
     public boolean waitForIsElementPresent() {
         isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
-        return false;
+        return true;
     }
 
     public List<WebElement> getElements() {
@@ -48,16 +57,12 @@ public abstract class BaseElement extends BaseTest {
         return elements;
     }
 
-//    public void waitForElementIsPresent() {
-//        isElementPresent(Integer.valueOf(browser.getTimeoutForCondition()));
-//    }
-
     public void waitForElementsArePresent() {
         areElementsPresent(Integer.valueOf(browser.getTimeoutForCondition()));
     }
 
     public boolean isElementPresent(int timeout) {
-        WebDriverWait wait = new WebDriverWait(browser.getDriver(), timeout);
+        wait = new WebDriverWait(browser.getDriver(), timeout);
         try {
             browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
             element = browser.getDriver().findElement(by);
@@ -69,7 +74,7 @@ public abstract class BaseElement extends BaseTest {
     }
 
     public boolean areElementsPresent(int timeout) {
-        WebDriverWait wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
+        wait = new WebDriverWait(Browser.getInstance().getDriver(), timeout);
         browser.getDriver().manage().timeouts().implicitlyWait(Integer.valueOf(browser.getTimeoutForCondition()), TimeUnit.SECONDS);
         try {
             wait.until((ExpectedCondition<Boolean>) new ExpectedCondition<Boolean>() {
@@ -101,6 +106,7 @@ public abstract class BaseElement extends BaseTest {
 
     public boolean isSelected() {
         waitForIsElementPresent();
+        log.info(getProperty("log.select") + element.getText());
         return element.isSelected();
     }
 
@@ -112,13 +118,16 @@ public abstract class BaseElement extends BaseTest {
     public void click() {
         waitForIsElementPresent();
         element.click();
+        log.info(getProperty("log.click") + ": " + getElementType() + ": " + element.getText());
     }
 
     public void clickAndWait() {
         waitForIsElementPresent();
         element.click();
         browser.waitForPageToLoad();
+        log.info(getProperty("log.click") + ": " + getElementType() + " = " + by + ". And waits for the page to load ");
     }
+
     public void clickViaJS() {
         waitForIsElementPresent();
         if (browser.getDriver() instanceof JavascriptExecutor) {
@@ -128,6 +137,7 @@ public abstract class BaseElement extends BaseTest {
 
     public String getText() {
         waitForIsElementPresent();
+        log.info(getLoc("log.get.text") + ": " + element.getText());
         return element.getText();
     }
 
@@ -148,11 +158,6 @@ public abstract class BaseElement extends BaseTest {
         waitForIsElementPresent();
         Select select = new Select(element);
         select.selectByVisibleText(value);
+        log.info(getLoc("log.select") + ": " + value);
     }
-
-    public abstract String[] split(String value);
-
-    public abstract int size();
-
-    public abstract String getAttribute(String href);
 }

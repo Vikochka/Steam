@@ -3,13 +3,11 @@ package framework;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 
-@Listeners(TestListeners.class)
 public class BaseTest {
+
     protected static Browser browser = Browser.getInstance();
     protected ITestContext context;
-
 
     @BeforeClass
     public void before(ITestContext context) {
@@ -17,6 +15,7 @@ public class BaseTest {
         browser = Browser.getInstance();
         browser.windowMaximise();
         browser.navigate(PropertyReader.getProperty("URL"));
+        context.setAttribute("driver", browser);
     }
 
     @AfterClass(alwaysRun = true, description = "Closing browser")

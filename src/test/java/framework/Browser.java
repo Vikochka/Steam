@@ -31,6 +31,7 @@ public class Browser {
         return instance != null;
     }
 
+
     public static Browser getInstance() {
         if (instance == null) {
             initProperties();
@@ -66,7 +67,7 @@ public class Browser {
     }
 
     public String getTimeoutForPageLoad() {
-        return  timeoutForPageLoad;
+        return timeoutForPageLoad;
     }
 
     public void waitForPageToLoad() {
@@ -116,6 +117,4 @@ public class Browser {
     public String getLocation() {
         return driver.getCurrentUrl();
     }
-
-
 }
